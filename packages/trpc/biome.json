@@ -1,0 +1,16 @@
+{
+	"root": false,
+	"extends": ["../../biome.json"],
+	"overrides": [
+		{
+			"includes": ["src/server/server.ts"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noExplicitAny": "off"
+					}
+				}
+			}
+		}
+	]
+}

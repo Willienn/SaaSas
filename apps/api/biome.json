@@ -1,0 +1,19 @@
+{
+  "root": false,
+  "extends": ["../../biome.json"],
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "noUnusedPrivateClassMembers": "off"
+      }
+    }
+  }
+}

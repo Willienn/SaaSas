@@ -1,1 +1,159 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+	--radius: 0.5rem;
+
+	/* Underground Lottery - Light */
+	--background: #f8f2e6;
+	--foreground: #1f1811;
+	--card: #fffaf0;
+	--card-foreground: #1f1811;
+	--popover: #fffaf0;
+	--popover-foreground: #1f1811;
+	--primary: #d39a24;
+	--primary-foreground: #100d08;
+	--secondary: #efe2c8;
+	--secondary-foreground: #2a2016;
+	--muted: #f0e6d2;
+	--muted-foreground: #625240;
+	--accent: #efb83d;
+	--accent-foreground: #161109;
+	--destructive: #b93a3a;
+	--border: #d8c8af;
+	--input: #dcccb1;
+	--ring: #d39a24;
+
+	--chart-1: #efb83d;
+	--chart-2: #d39a24;
+	--chart-3: #8d672d;
+	--chart-4: #6d512b;
+	--chart-5: #e8c26e;
+
+	--sidebar: #f3e7d2;
+	--sidebar-foreground: #20170f;
+	--sidebar-primary: #d39a24;
+	--sidebar-primary-foreground: #100d08;
+	--sidebar-accent: #e5d4b8;
+	--sidebar-accent-foreground: #241a10;
+	--sidebar-border: #ccb99d;
+	--sidebar-ring: #d39a24;
+}
+
+.dark {
+	/* Underground Lottery - Dark */
+	--background: #0a0a0f;
+	--foreground: #ece1cd;
+	--card: #101017;
+	--card-foreground: #ece1cd;
+	--popover: #101017;
+	--popover-foreground: #ece1cd;
+	--primary: #d8a22b;
+	--primary-foreground: #100d08;
+	--secondary: #1a1712;
+	--secondary-foreground: #eadabf;
+	--muted: #181821;
+	--muted-foreground: #a89b86;
+	--accent: #f2be45;
+	--accent-foreground: #100d08;
+	--destructive: #d05f5f;
+	--border: #282227;
+	--input: #262029;
+	--ring: #d8a22b;
+
+	--chart-1: #f2be45;
+	--chart-2: #d8a22b;
+	--chart-3: #87612a;
+	--chart-4: #5e4320;
+	--chart-5: #e8c274;
+
+	--sidebar: #0f0f16;
+	--sidebar-foreground: #ece1cd;
+	--sidebar-primary: #d8a22b;
+	--sidebar-primary-foreground: #100d08;
+	--sidebar-accent: #191921;
+	--sidebar-accent-foreground: #eadabf;
+	--sidebar-border: #221e24;
+	--sidebar-ring: #d8a22b;
+}
+
+@theme inline {
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--radius-2xl: calc(var(--radius) + 8px);
+	--radius-3xl: calc(var(--radius) + 12px);
+	--radius-4xl: calc(var(--radius) + 16px);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		font-family:
+			var(--font-display, "Arial Narrow"), "Franklin Gothic Medium", "Segoe UI",
+			sans-serif;
+		background-image:
+			radial-gradient(
+				circle at 10% 0%,
+				color-mix(in srgb, var(--accent) 18%, transparent),
+				transparent 36%
+			),
+			radial-gradient(
+				circle at 90% 14%,
+				color-mix(in srgb, var(--primary) 16%, transparent),
+				transparent 30%
+			),
+			linear-gradient(
+				140deg,
+				color-mix(in srgb, var(--background) 96%, #000),
+				var(--background)
+			);
+		letter-spacing: 0.01em;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+}
