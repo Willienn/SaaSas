@@ -1,4 +1,4 @@
-// TODO: substituir mock por tRPC query
+// TODO: substituir mock por query da API
 import { OrdersTable } from "@/components/features/orders/orders-table";
 
 export default function OrdersPage() {

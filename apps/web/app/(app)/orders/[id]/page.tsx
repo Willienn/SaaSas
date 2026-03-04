@@ -1,4 +1,4 @@
-// TODO: substituir mock por tRPC query
+// TODO: substituir mock por query da API
 import { OrderDetail } from "@/components/features/orders/order-detail";
 
 export default async function OrderDetailsPage({

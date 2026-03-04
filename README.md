@@ -1,6 +1,6 @@
 # Mini SaaS Study
 
-Monorepo com frontend em Next.js e backend em NestJS + tRPC.
+Monorepo com frontend em Next.js e backend em NestJS.
 
 ## Objetivo
 
@@ -12,5 +12,3 @@ Projeto de estudo e portfólio para demonstrar arquitetura full stack moderna em
 - Orquestracao: `turbo`
 - Frontend: `apps/web` (Next.js, porta `3001`)
 - Backend: `apps/backend` (NestJS, porta `3000`)
-- Contrato tRPC compartilhado: `packages/trpc`
-

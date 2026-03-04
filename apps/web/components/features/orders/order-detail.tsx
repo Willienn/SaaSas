@@ -234,7 +234,7 @@ export function OrderDetail({ orderId }: { orderId: string }) {
 					<p>
 						<Receipt className="mr-2 inline size-4 text-primary" />
 						This page intentionally avoids API requests. Replace static lookups
-						with tRPC query hooks when backend contracts are ready.
+						with query hooks da API when backend contracts are ready.
 					</p>
 				</CardContent>
 			</Card>

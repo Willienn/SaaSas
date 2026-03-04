@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { z } from "zod";
-import { createUserContract } from "./user.contract";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: z.infer<typeof createUserContract>) {
+  create(createUserDto: CreateUserDto) {
     return "This action adds a new user";
   }
 
@@ -16,10 +16,7 @@ export class UsersService {
     return `This action returns a #${id} user`;
   }
 
-  update(
-    id: number,
-    updateUserDto: Partial<z.infer<typeof createUserContract>>,
-  ) {
+  update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 

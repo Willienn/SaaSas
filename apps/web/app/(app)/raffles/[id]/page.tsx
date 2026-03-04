@@ -1,4 +1,4 @@
-// TODO: substituir mock por tRPC query
+// TODO: substituir mock por query da API
 import { RaffleDetail } from "@/components/features/raffles/raffle-detail";
 
 export default async function RaffleDetailsPage({

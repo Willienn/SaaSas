@@ -8,8 +8,6 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
-		"trpc:generate": "pnpm --filter backend trpc:generate",
-		"trpc:generate:dry": "pnpm --filter backend trpc:generate:dry",
 		"lint:biome": "biome check .",
 		"lint:biome:fix": "biome check --write .",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",

@@ -1,4 +1,4 @@
-// TODO: substituir mock por tRPC query
+// TODO: substituir mock por query da API
 import { RaffleResultView } from "@/src/components/features/public/raffle-result-view";
 
 export default async function PublicResultPage({

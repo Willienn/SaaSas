@@ -1,4 +1,4 @@
-// TODO: substituir mock por tRPC query
+// TODO: substituir mock por query da API
 import { PaymentsTable } from "@/components/features/payments/payments-table";
 
 export default function PaymentsPage() {
