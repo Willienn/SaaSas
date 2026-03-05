@@ -1,26 +1,53 @@
-import { Injectable } from "@nestjs/common";
+import { ConflictException, Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { PaginationDto } from "src/users/dto/pagination.dto";
+import { User } from "src/users/user.schema";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return "This action adds a new user";
+  constructor(@InjectModel("User") private readonly userModel: Model<User>) {}
+
+  async create(createUserDto: CreateUserDto) {
+    try {
+      const createdUser = new this.userModel(createUserDto);
+      return await createdUser.save();
+    } catch (error: any) {
+      if (error?.code === 11000 && error?.keyPattern?.email) {
+        throw new ConflictException("Email already exists");
+      }
+      throw error;
+    }
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(paginationDto: PaginationDto) {
+    const users = await this.userModel
+      .find()
+      .skip(((paginationDto.page || 1) - 1) * (paginationDto.limit || 10))
+      .limit(paginationDto.limit || 10)
+      .exec();
+
+    return users;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    const user = await this.userModel.findById(id).exec();
+    return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.userModel
+      .findByIdAndUpdate(id, updateUserDto, { new: true })
+      .exec();
+
+    return user;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    const user = await this.userModel.findByIdAndDelete(id).exec();
+
+    return user;
   }
 }

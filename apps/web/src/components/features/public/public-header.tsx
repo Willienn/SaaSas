@@ -22,6 +22,12 @@ export function PublicHeader() {
 					<Button asChild variant="ghost" size="sm">
 						<Link href="/meus-pedidos">Minhas compras</Link>
 					</Button>
+					<Button asChild variant="ghost" size="sm">
+						<Link href="/login">Entrar</Link>
+					</Button>
+					<Button asChild size="sm">
+						<Link href="/register">Criar conta</Link>
+					</Button>
 					<ThemeToggle />
 				</div>
 			</div>
