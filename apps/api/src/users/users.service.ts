@@ -1,5 +1,6 @@
 import { ConflictException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
+import { MongoServerError } from "mongodb";
 import { Model } from "mongoose";
 import { PaginationDto } from "src/users/dto/pagination.dto";
 import { User } from "src/users/user.schema";
@@ -12,10 +13,18 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     try {
-      const createdUser = new this.userModel(createUserDto);
+      const createdUser = new this.userModel({
+        name: createUserDto.name,
+        email: createUserDto.email,
+        passwordHash: createUserDto.password,
+      });
       return await createdUser.save();
-    } catch (error: any) {
-      if (error?.code === 11000 && error?.keyPattern?.email) {
+    } catch (error: unknown) {
+      if (
+        error instanceof MongoServerError &&
+        error?.code === 11000 &&
+        error?.keyPattern?.email
+      ) {
         throw new ConflictException("Email already exists");
       }
       throw error;

@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-
+import * as bcrypt from "bcrypt";
 @Schema({ timestamps: true, versionKey: false })
 export class User {
   @Prop({ required: true, trim: true })
@@ -9,11 +9,15 @@ export class User {
   email!: string;
 
   @Prop({ required: true })
-  password!: string;
+  passwordHash!: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-UserSchema.index({ email: 1 }, { unique: true });
 UserSchema.index({ createdAt: -1 });
 UserSchema.index({ name: 1 });
+
+UserSchema.pre("save", async function () {
+  if (!this.isModified("passwordHash")) return;
+  this.passwordHash = await bcrypt.hash(this.passwordHash, 10);
+});
