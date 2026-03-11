@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory, raw } from "@nestjs/mongoose";
 
 @Schema({ timestamps: true, versionKey: false })
 export class Order {
@@ -8,7 +8,13 @@ export class Order {
   @Prop({ required: true })
   user_id!: string;
 
-  @Prop({ required: true })
+  @Prop(
+    raw({
+      method: { type: String, required: true },
+      status: { type: String, required: true },
+      transactionId: { type: String, required: true },
+    }),
+  )
   payment!: {
     method: string;
     status: string;
@@ -21,7 +27,18 @@ export class Order {
   @Prop({ required: true })
   currency!: string;
 
-  @Prop({ required: true })
+  @Prop({
+    required: true,
+    type: [
+      raw({
+        productId: { type: String, required: true },
+        name: { type: String, required: true },
+        unitPrice: { type: Number, required: true },
+        quantity: { type: Number, required: true },
+        totalPrice: { type: Number, required: true },
+      }),
+    ],
+  })
   items!: Array<{
     productId: string;
     name: string;

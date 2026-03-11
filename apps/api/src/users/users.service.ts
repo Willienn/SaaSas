@@ -41,12 +41,17 @@ export class UsersService {
     return users;
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const user = await this.userModel.findById(id).exec();
     return user;
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async findOneByEmail(email: string) {
+    const user = await this.userModel.findOne({ email }).exec();
+    return user;
+  }
+
+  async update(id: string, updateUserDto: UpdateUserDto) {
     const user = await this.userModel
       .findByIdAndUpdate(id, updateUserDto, { new: true })
       .exec();
@@ -54,7 +59,7 @@ export class UsersService {
     return user;
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const user = await this.userModel.findByIdAndDelete(id).exec();
 
     return user;
